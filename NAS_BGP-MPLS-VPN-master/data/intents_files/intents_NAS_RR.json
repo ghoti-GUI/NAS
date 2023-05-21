@@ -1,0 +1,159 @@
+{
+  "AS": [
+      {
+          "number": 1000,
+          "IP-version": 4,
+          "IGP": "ospf",
+          "BGP": {
+              "iBGP": "PE route reflector",
+              "eBGP": ""
+          },
+          "MPLS": true,
+          "IP-range": {
+              "physical": {
+                  "inAs": "10.0.0.0/24",
+                  "peering": [
+                      ""
+                  ]
+              },
+              "loopback": "192.168.0.X/32"
+          },
+          "routers": [
+              {
+                  "name": "PE1",
+                  "border-router": true,
+                  "GNS3_file": "/mnt/c/Users/byoub/GNS3/projects/TP-NAS_test_3/project-files/dynamips/2ffd69a4-a91d-4c72-9f36-c32124868bf7/configs",
+                  "networks": [
+                      [
+                          {
+                              "name": "P1",
+                              "interface": "GigabitEthernet1/0"
+                          }
+                      ],
+                      [
+                          {
+                              "name": "CE1",
+                              "AS": 100,
+                              "VPN": true,
+                              "neighbor_ip": "10.1.0.2 255.255.255.0",
+                              "ip": "10.1.0.1 255.255.255.0",
+                              "interface": "GigabitEthernet2/0"
+                          }
+                      ],
+                      [
+                          {
+                              "name": "CE2",
+                              "AS": 200,
+                              "VPN": true,
+                              "neighbor_ip": "10.2.0.2 255.255.255.0",
+                              "ip": "10.2.0.1 255.255.255.0",
+                              "interface": "FastEthernet0/0"
+                          }
+                      ]
+                  ]
+              },
+              {
+                  "name": "P1",
+                  "border-router": false,
+                  "GNS3_file": "/mnt/c/Users/byoub/GNS3/projects/TP-NAS_test_3/project-files/dynamips/ab7164a7-7ad2-4643-881c-537c346373dc/configs",
+                  "networks": [
+                      [
+                          {
+                              "name": "PE1",
+                              "interface": "GigabitEthernet1/0"
+                          }
+                      ],
+                      [
+                          {
+                              "name": "P2",
+                              "interface": "GigabitEthernet2/0"
+                          }
+                      ],
+                      [
+                          {
+                              "name": "RR",
+                              "interface": "FastEthernet0/0"
+                          }
+                      ]
+                  ]
+              },
+              {
+                  "name": "P2",
+                  "border-router": false,
+                  "GNS3_file": "/mnt/c/Users/byoub/GNS3/projects/TP-NAS_test_3/project-files/dynamips/a0fd4a81-ed91-4e87-9bd0-b6449f783855/configs",
+                  "networks": [
+                      [
+                          {
+                              "name": "P1",
+                              "interface": "GigabitEthernet2/0"
+                          }
+                      ],
+                      [
+                          {
+                              "name": "PE2",
+                              "interface": "GigabitEthernet1/0"
+                          }
+                      ],
+                      [
+                          {
+                              "name": "RR",
+                              "interface": "FastEthernet0/0"
+                          }
+                      ]
+                  ]
+              },
+              {
+                  "name": "PE2",
+                  "border-router": true,
+                  "GNS3_file": "/mnt/c/Users/byoub/GNS3/projects/TP-NAS_test_3/project-files/dynamips/2a89a95c-cdd5-49b1-9fcb-7be3fb9fdf70/configs",
+                  "networks": [
+                      [
+                          {
+                              "name": "P2",
+                              "interface": "GigabitEthernet1/0"
+                          }
+                      ],
+                      [
+                          {
+                              "name": "CE3",
+                              "AS": 100,
+                              "VPN": true,
+                              "neighbor_ip": "10.3.0.1 255.255.255.0",
+                              "ip": "10.3.0.2 255.255.255.0",
+                              "interface": "FastEthernet0/0"
+                          }
+                      ],
+                      [
+                          {
+                              "name": "CE4",
+                              "AS": 200,
+                              "VPN": true,
+                              "neighbor_ip": "10.4.0.1 255.255.255.0",
+                              "ip": "10.4.0.2 255.255.255.0",
+                              "interface": "GigabitEthernet2/0"
+                          }
+                      ]
+                  ]
+              },
+              {
+                  "name": "RR",
+                  "border-router": false,
+                  "route-reflector": true,
+                  "GNS3_file": "/mnt/c/Users/byoub/GNS3/projects/TP-NAS_test_3/project-files/dynamips/c43ac42a-d03c-4de1-bcd8-cc5e15ccd3e2/configs",
+                  "networks": [
+                      [
+                          {
+                              "name": "P1",
+                              "interface": "FastEthernet0/0"
+                          },
+                          {
+                              "name": "P2",
+                              "interface": "GigabitEthernet1/0"
+                          }
+                      ]
+                  ]
+              }
+          ]
+      }
+  ]
+}
